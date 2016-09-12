@@ -13,7 +13,7 @@ Lister le noms des élèves par ordre alphabétique
 
 
 ###Pré-requis
-#####Créer un tableau ayant comme objet les noms, prénoms et âges des élèves.
+####Créer un tableau ayant comme objet les noms, prénoms et âges des élèves.
 
 ####Création des algorithmes
 ####Affichage des résultats dans un fichier html en VanillaJs
