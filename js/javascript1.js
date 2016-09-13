@@ -96,8 +96,6 @@ document.getElementById("buttonMoyenne").addEventListener("click", function(){
     textMoyenne.classList.toggle("hide")
 })
 
-
-
 let nomLong = document.createElement('div')
 nomLong.innerHTML = `${nomLePlusLong}`
 nomLong.setAttribute('id', 'affichenomLong')
@@ -106,7 +104,6 @@ document.getElementById("buttonNomLong").addEventListener("click", function(){
     nomLong.classList.toggle("show")
     nomLong.classList.toggle("hide")
 })
-
 
 for (i = 0; i < students.length; i++) {
     let list = document.createElement('li')
@@ -118,3 +115,17 @@ for (i = 0; i < students.length; i++) {
         list.classList.toggle("hide")
 })
 }
+
+// jQuery
+$('#QbuttonMoyenne').click(function(){
+    $('#Qmoyenne').html(ageMoyen).toggleClass('hide')
+})
+$('#QbuttonNomLong').click(function(){
+    $('#QnomLong').html(nomLePlusLong).toggleClass('hide')
+})
+
+$('#QbuttonList').click(function(){
+    for (i = 0; i < students.length; i++) {
+        $('#Qlist').append(`<li>${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}</li>`).toggleClass('hide')
+    }
+})
