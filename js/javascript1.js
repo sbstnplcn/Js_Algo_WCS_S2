@@ -118,11 +118,3 @@ for (i = 0; i < students.length; i++) {
         list.classList.toggle("hide")
 })
 }
-
-
-
-
-
-
-
-//
