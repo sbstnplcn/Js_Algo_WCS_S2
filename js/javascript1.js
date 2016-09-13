@@ -2,43 +2,53 @@
 let students = [{
     nom: "Sebirou",
     Prenom: "Anne-Claire",
-    age: 29
+    age: 29,
+    sexe : 'F'
 },{
     nom: "Huc",
     Prenom: "Vivien",
-    age: 18
+    age: 18,
+    sexe : 'M'
 }, {
     nom: "de Barthez",
     Prenom: "Paul",
-    age: 22
+    age: 22,
+    sexe : 'M'
 },  {
     nom: "Mouat",
     Prenom: "Karl",
-    age: 35
+    age: 35,
+    sexe : 'M'
 }, {
     nom: "Bordais",
     Prenom: "Alexis",
-    age: 34
+    age: 34,
+    sexe : 'M'
 }, {
     nom: "Alary",
     Prenom: "Audrey",
-    age: 23
+    age: 23,
+    sexe : 'F'
 }, {
     nom: "Palacin",
     Prenom: "Sébastien",
-    age: 27
+    age: 27,
+    sexe : 'M'
 }, {
     nom: "Cisse",
     Prenom: "Ousmane",
-    age: 34
+    age: 34,
+    sexe : 'M'
 }, {
     nom: "Gomez",
     Prenom: "Tony",
-    age: 30
+    age: 30,
+    sexe : 'M'
 }, {
     nom: "Mourgues",
     Prenom: "Nans",
-    age: 25
+    age: 25,
+    sexe : 'M'
 }]
 
 // age moyen should // be 27,7
@@ -53,6 +63,10 @@ let longueurNom = 0;
 let nomLePlusLong
 let sonNom
 let ordreAl
+let pariteM
+let pariteF
+let f = 0
+let m = 0
 
 for (i=0; i<students.length; i++){
 
@@ -67,20 +81,30 @@ for (i=0; i<students.length; i++){
 ageMoyen = totalAge / students.length
 
 let odreAlphabetique = students.sort(function (a, b){
-    if (a.nom > b.nom){
+    if (a.nom.toUpperCase() > b.nom.toUpperCase()){
         return 1
     }
-    else if (a.nom < b.nom){
+    else if (a.nom.toUpperCase() < b.nom.toUpperCase()){
         return -1
     }
     else{
         return 0
     }
 })
-
+for (i=0; i<students.length; i++){
+    if (students[i].sexe === "M"){
+        m += 1
+    }
+    else{
+        f += 1
+    }
+}
+pariteM = `${m*100/students.length} %`
+pariteF = `${f*100/students.length} %`
 // console.log(ageMoyen)
 // console.log(nomLePlusLong)
 // console.log(odreAlphabetique)
+// console.log(pariteM, pariteF)
 
 // creer vue HTML
 // 1 page en Jquery, 1 en Native JS
@@ -105,6 +129,15 @@ document.getElementById("buttonNomLong").addEventListener("click", function(){
     nomLong.classList.toggle("hide")
 })
 
+let parite = document.createElement('div')
+parite.innerHTML = `${pariteF} / ${pariteM}`
+parite.setAttribute('id', 'afficheParite')
+document.getElementById('parite').appendChild(parite).className = "hide"
+document.getElementById("buttonParite").addEventListener("click", function(){
+    parite.classList.toggle("show")
+    parite.classList.toggle("hide")
+})
+
 for (i = 0; i < students.length; i++) {
     let list = document.createElement('li')
     list.innerHTML = `${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}`
@@ -121,9 +154,11 @@ $('#QbuttonMoyenne').click(function(){
     $('#Qmoyenne').html(ageMoyen).toggleClass('hide')
 })
 $('#QbuttonNomLong').click(function(){
-    $('#QnomLong').html(nomLePlusLong).toggleClass('hide')
+    $('#QnomLong').html(`${nomLePlusLong}`).toggleClass('hide')
 })
-
+$('#QbuttonParite').click(function(){
+    $('#Qparite').html(`${pariteF} / ${pariteM}`).toggleClass('hide')
+})
 
 for (i = 0; i < students.length; i++) {
     $('#Qlist').append(`<li>${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}</li>`)
