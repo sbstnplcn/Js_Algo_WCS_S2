@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 "use strict"
 let students = [{
     nom: "Sebirou",
@@ -146,7 +148,7 @@ for (i = 0; i < students.length; i++) {
     document.getElementById("buttonList").addEventListener("click", function(){
         list.classList.toggle("show")
         list.classList.toggle("hide")
-})
+    })
 }
 
 // jQuery
@@ -165,4 +167,19 @@ for (i = 0; i < students.length; i++) {
 }
 $('#QbuttonList').click(function(){
 $('#Qlist').toggleClass('hide')
+})
+
+
+// AJAX
+let html = ""
+$.getJSON("ajax.json", function(json) {
+    json.forEach(function(val) {
+        html += `${"<li>"} ${val.nom} ${val.Prenom} ${"</li>"}`
+    })
+  $("#Qajax").append(html)
+})
+$("#QbuttonAjax").on("click", function() {
+    $('#Qajax').toggleClass('hide')
+})
+
 })
