@@ -124,8 +124,10 @@ $('#QbuttonNomLong').click(function(){
     $('#QnomLong').html(nomLePlusLong).toggleClass('hide')
 })
 
+
+for (i = 0; i < students.length; i++) {
+    $('#Qlist').append(`<li>${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}</li>`)
+}
 $('#QbuttonList').click(function(){
-    for (i = 0; i < students.length; i++) {
-        $('#Qlist').append(`<li>${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}</li>`).toggleClass('hide')
-    }
+$('#Qlist').toggleClass('hide')
 })
