@@ -58,6 +58,7 @@ for (i=0; i<students.length; i++){
     if(students[i].nom.length > longueurNom){
         longueurNom = students[i].nom.length;
         nomLePlusLong = students[i].nom;
+        prenomNomLePlusLong = students[i].Prenom
     }
 
     function ordreAl(a, b){
@@ -77,29 +78,46 @@ ageMoyen = totalAge / students.length
 
 let odreAlphabetique = students.sort(ordreAl)
 
-console.log(ageMoyen)
-console.log(nomLePlusLong)
-console.log(odreAlphabetique)
+// console.log(ageMoyen)
+// console.log(nomLePlusLong)
+// console.log(odreAlphabetique)
+// console.log(prenomNomLePlusLong)
 
 // creer vue HTML
 // 1 page en Jquery, 1 en Native JS
 
-let textMoyenne = document.createElement('div');
-textMoyenne.innerHTML = `${ageMoyen}`;
-document.getElementById('moyenne').appendChild(textMoyenne);
+// Vanilla Js
 
-let nomLong = document.createElement('div');
-nomLong.innerHTML = `${nomLePlusLong}`;
-document.getElementById('nomLong').appendChild(nomLong);
+let textMoyenne = document.createElement('div')
+textMoyenne.innerHTML = `${ageMoyen}`
+textMoyenne.setAttribute('id', 'afficheAgeMoyen')
+document.getElementById('moyenne').appendChild(textMoyenne).className = "hide"
+document.getElementById("buttonMoyenne").addEventListener("click", function(){
+    textMoyenne.classList.toggle("show")
+    textMoyenne.classList.toggle("hide")
+})
+
+
+let nomLong = document.createElement('div')
+nomLong.innerHTML = `${prenomNomLePlusLong} ${nomLePlusLong}`
+nomLong.setAttribute('id', 'affichenomLong')
+document.getElementById('nomLong').appendChild(nomLong).className = "hide"
+document.getElementById("buttonNomLong").addEventListener("click", function(){
+    nomLong.classList.toggle("show")
+    nomLong.classList.toggle("hide")
+})
 
 
 for (i = 0; i < students.length; i++) {
-    let list = document.createElement('li');
-    list.innerHTML = `${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}`;
-    document.getElementById('list').appendChild(list);
+    let list = document.createElement('li')
+    list.innerHTML = `${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}`
+    list.setAttribute('id', 'afficheList')
+    document.getElementById('list').appendChild(list).className = "hide"
+    document.getElementById("buttonList").addEventListener("click", function(){
+        list.classList.toggle("show")
+        list.classList.toggle("hide")
+})
 }
-
-
 
 
 
