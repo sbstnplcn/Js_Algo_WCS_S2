@@ -1,3 +1,4 @@
+"use strict"
 let students = [{
     nom: "Sebirou",
     Prenom: "Anne-Claire",
@@ -43,6 +44,7 @@ let students = [{
 // age moyen should // be 27,7
 // nom le plus long // should be "de Barthez"
 // ordre alphabetique
+// faire de l'ajax pour charger la liste des students qui eux seront contenu dans un fichier JSON
 
 let totalAge = 0
 let ageMoyen
@@ -50,6 +52,7 @@ let i
 let longueurNom = 0;
 let nomLePlusLong
 let sonNom
+let ordreAl
 
 for (i=0; i<students.length; i++){
 
@@ -58,30 +61,26 @@ for (i=0; i<students.length; i++){
     if(students[i].nom.length > longueurNom){
         longueurNom = students[i].nom.length;
         nomLePlusLong = students[i].nom;
-        prenomNomLePlusLong = students[i].Prenom
-    }
-
-    function ordreAl(a, b){
-        if (a.nom > b.nom){
-            return 1
-        }
-        else if (a.nom < b.nom){
-            return -1
-        }
-        else{
-            return 0
-        }
     }
 }
 
 ageMoyen = totalAge / students.length
 
-let odreAlphabetique = students.sort(ordreAl)
+let odreAlphabetique = students.sort(function (a, b){
+    if (a.nom > b.nom){
+        return 1
+    }
+    else if (a.nom < b.nom){
+        return -1
+    }
+    else{
+        return 0
+    }
+})
 
 // console.log(ageMoyen)
 // console.log(nomLePlusLong)
 // console.log(odreAlphabetique)
-// console.log(prenomNomLePlusLong)
 
 // creer vue HTML
 // 1 page en Jquery, 1 en Native JS
@@ -98,8 +97,9 @@ document.getElementById("buttonMoyenne").addEventListener("click", function(){
 })
 
 
+
 let nomLong = document.createElement('div')
-nomLong.innerHTML = `${prenomNomLePlusLong} ${nomLePlusLong}`
+nomLong.innerHTML = `${nomLePlusLong}`
 nomLong.setAttribute('id', 'affichenomLong')
 document.getElementById('nomLong').appendChild(nomLong).className = "hide"
 document.getElementById("buttonNomLong").addEventListener("click", function(){
