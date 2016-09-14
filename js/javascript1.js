@@ -196,23 +196,32 @@ $("#QbuttonAjax").on("click", function() {
 // Google API key : AIzaSyAx5FDqSbdMpU6pOR6B8hTide4bKWY-Fn4
 
 function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
+    let map = new google.maps.Map(document.getElementById('map'), {
         zoom: 6,
         center: new google.maps.LatLng(44.8333,-0.5667)
     });
-    var geocoder = new google.maps.Geocoder();
+    let geocoder = new google.maps.Geocoder();
     geocodeAddress(geocoder, map);
 }
-var address
+let address
+let contentString
+let marker
 function geocodeAddress(geocoder, resultsMap) {
     $.getJSON("ajax.json", function(json) {
         json.forEach(function(val) {
             address = val.ville
-            geocoder.geocode({'address': address}, function(results, status) {
-              var marker = new google.maps.Marker({
+            contentString = `${val.nom} ${val.Prenom}`
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+              });
+            geocoder.geocode({'address': address}, function(results) {
+              marker = new google.maps.Marker({
                 map: resultsMap,
                 position: results[0].geometry.location
               })
+              marker.addListener('click', function() {
+                  infowindow.open(map, marker);
+                });
             })
         })
     })
