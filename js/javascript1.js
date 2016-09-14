@@ -5,12 +5,16 @@ let students = [{
     nom: "Sebirou",
     Prenom: "Anne-Claire",
     age: 29,
-    sexe : 'F'
+    sexe : 'F',
+    codePostal : 40150,
+    ville: 'Soorts-Hossegor'
 },{
     nom: "Huc",
     Prenom: "Vivien",
     age: 18,
-    sexe : 'M'
+    sexe : 'M',
+    codePostal: 33185,
+    ville: 'Le Haillan'
 }, {
     nom: "de Barthez",
     Prenom: "Paul",
@@ -35,17 +39,23 @@ let students = [{
     nom: "Palacin",
     Prenom: "Sébastien",
     age: 27,
-    sexe : 'M'
+    sexe : 'M',
+    codePostal : 31000,
+    ville : 'Toulouse'
 }, {
     nom: "Cisse",
     Prenom: "Ousmane",
     age: 34,
-    sexe : 'M'
+    sexe : 'M',
+    codePostal: 44000,
+    ville : 'Nantes'
 }, {
     nom: "Gomez",
     Prenom: "Tony",
     age: 30,
-    sexe : 'M'
+    sexe : 'M',
+    codePostal :33140,
+    ville : "Villenave d'Ornon"
 }, {
     nom: "Mourgues",
     Prenom: "Nans",
@@ -183,3 +193,27 @@ $("#QbuttonAjax").on("click", function() {
 })
 
 })
+// Google API key : AIzaSyAx5FDqSbdMpU6pOR6B8hTide4bKWY-Fn4
+
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 6,
+        center: new google.maps.LatLng(44.8333,-0.5667)
+    });
+    var geocoder = new google.maps.Geocoder();
+    geocodeAddress(geocoder, map);
+}
+var address
+function geocodeAddress(geocoder, resultsMap) {
+    $.getJSON("ajax.json", function(json) {
+        json.forEach(function(val) {
+            address = val.ville
+            geocoder.geocode({'address': address}, function(results, status) {
+              var marker = new google.maps.Marker({
+                map: resultsMap,
+                position: results[0].geometry.location
+              })
+            })
+        })
+    })
+}
