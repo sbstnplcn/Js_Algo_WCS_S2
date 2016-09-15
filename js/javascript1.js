@@ -192,28 +192,37 @@ $("#QbuttonAjax").on("click", function() {
     $('#Qajax').toggleClass('hide')
 })
 
-})
-// Google API key : AIzaSyAx5FDqSbdMpU6pOR6B8hTide4bKWY-Fn4
+let map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 6,
+    center: new google.maps.LatLng(45,2.6)
+});
+let geocoder = new google.maps.Geocoder();
+geocodeAddress(geocoder, map);
+let address
+let contentString
 
-function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 6,
-        center: new google.maps.LatLng(44.8333,-0.5667)
-    });
-    var geocoder = new google.maps.Geocoder();
-    geocodeAddress(geocoder, map);
-}
-var address
 function geocodeAddress(geocoder, resultsMap) {
     $.getJSON("ajax.json", function(json) {
         json.forEach(function(val) {
             address = val.ville
-            geocoder.geocode({'address': address}, function(results, status) {
-              var marker = new google.maps.Marker({
-                map: resultsMap,
-                position: results[0].geometry.location
-              })
+            contentString = `${val.nom} ${val.Prenom}`
+            let infowindow = new google.maps.InfoWindow({
+                content: contentString
+            })
+            geocoder.geocode({'address': address}, function(results) {
+                let marker = new google.maps.Marker({
+                    map: resultsMap,
+                    position: results[0].geometry.location
+                })
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker)
+                    $(this).toggleClass('hide')
+                })
             })
         })
     })
 }
+
+
+})
+// Google API key : AIzaSyAx5FDqSbdMpU6pOR6B8hTide4bKWY-Fn4

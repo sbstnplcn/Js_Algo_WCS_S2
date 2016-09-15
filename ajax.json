@@ -3,69 +3,59 @@
     "Prenom": "Anne-Claire",
     "age": 29,
     "sexe" : "F",
-    "codePostal" : 40150,
-    "ville": "Soorts-Hossegor"
+    "ville": "579 avenue de la bécasse, 40150, Soorts-Hossegor"
 },{
     "nom": "Huc",
     "Prenom": "Vivien",
     "age": 18,
     "sexe" : "M",
-    "codePostal": 33185,
-    "ville": "Le Haillan"
+    "ville": "Le Haillan, 33185"
 }, {
     "nom": "de Barthez",
     "Prenom": "Paul",
     "age": 22,
     "sexe" : "M",
-    "codePostal" : 33000,
-    "ville" : "Bordeaux"
+    "ville" : "72 rue Henri IV, 33000, Bordeaux"
 },  {
     "nom": "Muat",
     "Prenom": "Karl",
     "age": 35,
     "sexe" : "M",
-    "codePostal" : 33000,
-    "ville" : "Bordeaux"
+    "ville" : "81 rue de rivière, 33000, BORDEAUX"
 }, {
     "nom": "Bordais",
     "Prenom": "Alexis",
     "age": 34,
     "sexe" : "M",
-    "codePostal" : 33000,
-    "ville" : "Bordeaux"
+    "ville" : "18 rue Jean Paul Alaux, 33100, Bordeaux"
 }, {
     "nom": "Alary",
     "Prenom": "Audrey",
     "age": 23,
     "sexe" : "F",
-    "codePostal" : 33000,
-    "ville" : "Bordeaux"
+    "ville" : "21 rue rode, 33000, Bordeaux"
 }, {
     "nom": "Palacin",
     "Prenom": "Sébastien",
     "age": 27,
     "sexe" : "M",
-    "codePostal" : 31000,
-    "ville" : "Toulouse"
+    "ville" : "36 rue des Tourneurs, 31000, Toulouse"
 }, {
     "nom": "Cisse",
     "Prenom": "Ousmane",
     "age": 34,
     "sexe" : "M",
-    "codePostal": 44000,
-    "ville" : "Nantes"
+    "ville" : "Nantes, 44000"
 }, {
     "nom": "Gomez",
     "Prenom": "Tony",
     "age": 30,
     "sexe" : "M",
-    "codePostal" :33140,
-    "ville" : "Villenave d'Ornon"
+    "ville" : "Villenave d'Ornon, 33140"
 }, {
     "nom": "Murgues",
     "Prenom": "Nans",
     "age": 25,
     "sexe" : "M",
-    "codePostal" : 33000,
-    "ville" : "Bordeaux"
+    "ville" : "Santo-Pietro-di-Tenda, 20270 "
 }]
