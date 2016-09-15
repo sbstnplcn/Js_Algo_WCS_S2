@@ -3,7 +3,7 @@
     "Prenom": "Anne-Claire",
     "age": 29,
     "sexe" : "F",
-    "ville": "Soorts-Hossegor, 40150"
+    "ville": "579 avenue de la bécasse, 40150, Soorts-Hossegor"
 },{
     "nom": "Huc",
     "Prenom": "Vivien",
@@ -15,31 +15,31 @@
     "Prenom": "Paul",
     "age": 22,
     "sexe" : "M",
-    "ville" : "Bordeaux 33000"
+    "ville" : "72 rue Henri IV, 33000, Bordeaux"
 },  {
     "nom": "Muat",
     "Prenom": "Karl",
     "age": 35,
     "sexe" : "M",
-    "ville" : "Bordeaux, 33000"
+    "ville" : "81 rue de rivière, 33000, BORDEAUX"
 }, {
     "nom": "Bordais",
     "Prenom": "Alexis",
     "age": 34,
     "sexe" : "M",
-    "ville" : "Bordeaux, 33000"
+    "ville" : "18 rue Jean Paul Alaux, 33100, Bordeaux"
 }, {
     "nom": "Alary",
     "Prenom": "Audrey",
     "age": 23,
     "sexe" : "F",
-    "ville" : "Bordeaux, 33000"
+    "ville" : "21 rue rode, 33000, Bordeaux"
 }, {
     "nom": "Palacin",
     "Prenom": "Sébastien",
     "age": 27,
     "sexe" : "M",
-    "ville" : "Toulouse, 31000"
+    "ville" : "36 rue des Tourneurs, 31000, Toulouse"
 }, {
     "nom": "Cisse",
     "Prenom": "Ousmane",
