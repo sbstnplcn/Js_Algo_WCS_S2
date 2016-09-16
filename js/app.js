@@ -9,61 +9,61 @@ let students = [{
     Prenom: "Anne-Claire",
     age: 29,
     sexe : 'F',
-    codePostal : 40150,
-    ville: 'Soorts-Hossegor'
+    ville: "579 avenue de la bécasse, 40150, Soorts-Hossegor"
 },{
     nom: "Huc",
     Prenom: "Vivien",
     age: 18,
     sexe : 'M',
-    codePostal: 33185,
-    ville: 'Le Haillan'
+    ville: "Le Haillan, 33185"
 }, {
     nom: "de Barthez",
     Prenom: "Paul",
     age: 22,
-    sexe : 'M'
+    sexe : 'M',
+    ville: "72 rue Henri IV, 33000, Bordeaux"
 },  {
     nom: "Mouat",
     Prenom: "Karl",
     age: 35,
-    sexe : 'M'
+    sexe : 'M',
+    ville: "81 rue de rivière, 33000, BORDEAUX"
 }, {
     nom: "Bordais",
     Prenom: "Alexis",
     age: 34,
-    sexe : 'M'
+    sexe : 'M',
+    ville: "18 rue Jean Paul Alaux, 33100, Bordeaux"
 }, {
     nom: "Alary",
     Prenom: "Audrey",
     age: 23,
-    sexe : 'F'
+    sexe : 'F',
+    ville: "21 rue rode, 33000, Bordeaux"
 }, {
     nom: "Palacin",
     Prenom: "Sébastien",
     age: 27,
     sexe : 'M',
-    codePostal : 31000,
-    ville : 'Toulouse'
+    ville : "36 rue des Tourneurs, 31000, Toulouse"
 }, {
     nom: "Cisse",
     Prenom: "Ousmane",
     age: 34,
     sexe : 'M',
-    codePostal: 44000,
-    ville : 'Nantes'
+    ville : "Nantes, 44000"
 }, {
     nom: "Gomez",
     Prenom: "Tony",
     age: 30,
     sexe : 'M',
-    codePostal :33140,
-    ville : "Villenave d'Ornon"
+    ville : "Villenave d'Ornon, 33140"
 }, {
     nom: "Mourgues",
     Prenom: "Nans",
     age: 25,
-    sexe : 'M'
+    sexe : 'M',
+    ville: "Santo-Pietro-di-Tenda, 20270"
 }]
 
 ////////////////////// Algorithmie //////////////////////
@@ -157,7 +157,7 @@ $('#QbuttonList').click(function(){
 // AJAX //
 
 let Qlist = ""
-$.getJSON("ajax.json", function(json) {
+$.getJSON("student.json", function(json) {
     json.forEach(function(val) {
         Qlist += `${"<li>"} ${val.nom} ${val.Prenom} ${"</li>"}`
     })
@@ -166,6 +166,16 @@ $.getJSON("ajax.json", function(json) {
 $("#QbuttonAjax").on("click", function() {
     $('#Qajax').toggleClass('hide')
 })
+
+// Geocoding //
+
+//Proposition de Challenge
+// Challenge 1
+//// Trouver l'épicentre de tout les élèves
+////// => requeter toute les lat et lng, faire la moyenne de chacune
+////// Centrer la carte sur l'épicentre
+// Challenge 2
+//// Faire de même avec les écoles
 
 
 let map = new google.maps.Map(document.getElementById('map'), {
@@ -178,7 +188,7 @@ let address
 let contentString
 
 function geocodeAddress(geocoder, resultsMap) {
-    $.getJSON("ajax.json", function(json) {
+    $.getJSON("student.json", function(json) {
         json.forEach(function(val) {
             address = val.ville
             contentString = `${val.nom} ${val.Prenom}`

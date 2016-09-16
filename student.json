@@ -9,7 +9,7 @@
     "Prenom": "Vivien",
     "age": 18,
     "sexe" : "M",
-    "ville": "Le Haillan, 33185"
+    "ville": "33185, Le Haillan"
 }, {
     "nom": "de Barthez",
     "Prenom": "Paul",
@@ -21,7 +21,7 @@
     "Prenom": "Karl",
     "age": 35,
     "sexe" : "M",
-    "ville" : "81 rue de rivière, 33000, BORDEAUX"
+    "ville" : "81 rue de rivière, 33000, Bordeaux"
 }, {
     "nom": "Bordais",
     "Prenom": "Alexis",
@@ -45,17 +45,17 @@
     "Prenom": "Ousmane",
     "age": 34,
     "sexe" : "M",
-    "ville" : "Nantes, 44000"
+    "ville" : "44000, Nantes"
 }, {
     "nom": "Gomez",
     "Prenom": "Tony",
     "age": 30,
     "sexe" : "M",
-    "ville" : "Villenave d'Ornon, 33140"
+    "ville" : "33140, Villenave d'Ornon"
 }, {
     "nom": "Murgues",
     "Prenom": "Nans",
     "age": 25,
     "sexe" : "M",
-    "ville" : "Santo-Pietro-di-Tenda, 20270 "
+    "ville" : "20270, Santo-Pietro-di-Tenda"
 }]
