@@ -157,12 +157,12 @@ $('#QbuttonList').click(function(){
 
 // AJAX //
 
-let html = ""
+let Qlist = ""
 $.getJSON("ajax.json", function(json) {
     json.forEach(function(val) {
-        html += `${"<li>"} ${val.nom} ${val.Prenom} ${"</li>"}`
+        Qlist += `${"<li>"} ${val.nom} ${val.Prenom} ${"</li>"}`
     })
-  $("#Qajax").append(html)
+  $("#Qajax").append(Qlist)
 })
 $("#QbuttonAjax").on("click", function() {
     $('#Qajax').toggleClass('hide')
