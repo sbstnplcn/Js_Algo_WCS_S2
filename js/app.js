@@ -73,6 +73,8 @@ let ageMoyen
 let i
 let longueurNom = 0;
 let nomLePlusLong
+let textMoyenne
+let list
 let sonNom
 let ordreAl
 let pariteM
@@ -87,6 +89,13 @@ for (i=0; i<students.length; i++){
     if(students[i].nom.length > longueurNom){
         longueurNom = students[i].nom.length;
         nomLePlusLong = students[i].nom;
+    }
+
+    if (students[i].sexe === "M"){
+        m += 1
+    }
+    else{
+        f += 1
     }
 }
 
@@ -103,14 +112,7 @@ let odreAlphabetique = students.sort(function (a, b){
         return 0
     }
 })
-for (i=0; i<students.length; i++){
-    if (students[i].sexe === "M"){
-        m += 1
-    }
-    else{
-        f += 1
-    }
-}
+
 pariteM = `${m*100/students.length} %`
 pariteF = `${f*100/students.length} %`
 // console.log(ageMoyen)
@@ -123,42 +125,22 @@ pariteF = `${f*100/students.length} %`
 
 // Vanilla Js
 
-let textMoyenne = document.createElement('div')
-textMoyenne.innerHTML = `${ageMoyen}`
-textMoyenne.setAttribute('id', 'afficheAgeMoyen')
-document.getElementById('moyenne').appendChild(textMoyenne).className = "hide"
-document.getElementById("buttonMoyenne").addEventListener("click", function(){
-    textMoyenne.classList.toggle("show")
-    textMoyenne.classList.toggle("hide")
-})
-
-let nomLong = document.createElement('div')
-nomLong.innerHTML = `${nomLePlusLong}`
-nomLong.setAttribute('id', 'affichenomLong')
-document.getElementById('nomLong').appendChild(nomLong).className = "hide"
-document.getElementById("buttonNomLong").addEventListener("click", function(){
-    nomLong.classList.toggle("show")
-    nomLong.classList.toggle("hide")
-})
-
-let parite = document.createElement('div')
-parite.innerHTML = `${pariteF} / ${pariteM}`
-parite.setAttribute('id', 'afficheParite')
-document.getElementById('parite').appendChild(parite).className = "hide"
-document.getElementById("buttonParite").addEventListener("click", function(){
-    parite.classList.toggle("show")
-    parite.classList.toggle("hide")
-})
-
-for (i = 0; i < students.length; i++) {
-    let list = document.createElement('li')
-    list.innerHTML = `${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}`
-    list.setAttribute('id', 'afficheList')
-    document.getElementById('list').appendChild(list).className = "hide"
-    document.getElementById("buttonList").addEventListener("click", function(){
-        list.classList.toggle("show")
-        list.classList.toggle("hide")
+function showOnClick(v, w, x, y, z){
+    v = document.createElement('div')
+    v.innerHTML = w
+    v.setAttribute('id', x)
+    document.getElementById(y).appendChild(v).className = "hide"
+    document.getElementById(z).addEventListener("click", function(){
+        v.classList.toggle("show")
+        v.classList.toggle("hide")
     })
+}
+
+showOnClick(parite, `${pariteF} / ${pariteM}`, 'afficheParite', 'parite', "buttonParite")
+showOnClick(nomLong, `${nomLePlusLong}`, 'affichenomLong', 'nomLong', "buttonNomLong")
+showOnClick(textMoyenne, `${ageMoyen}`, 'afficheAgeMoyen', 'moyenne', "buttonMoyenne")
+for (i = 0; i < students.length; i++) {
+    showOnClick(list, `${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}`, 'afficheList', 'list', "buttonList")
 }
 
 // jQuery
