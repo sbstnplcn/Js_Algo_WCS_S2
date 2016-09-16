@@ -71,7 +71,7 @@ let students = [{
 let totalAge = 0
 let ageMoyen
 let i
-let longueurNom = 0;
+let longueurNom = 0
 let nomLePlusLong
 let textMoyenne
 let list
@@ -124,7 +124,6 @@ function showOnClickJs(v, w, x, y, z){
     v.setAttribute('id', x)
     document.getElementById(y).appendChild(v).className = "hide"
     document.getElementById(z).addEventListener("click", function(){
-        v.classList.toggle("show")
         v.classList.toggle("hide")
     })
 }
