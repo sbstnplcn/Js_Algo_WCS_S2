@@ -1,6 +1,9 @@
+"use strict"
+
 $(document).ready(function() {
 
-"use strict"
+// Tableau //
+
 let students = [{
     nom: "Sebirou",
     Prenom: "Anne-Claire",
@@ -63,10 +66,7 @@ let students = [{
     sexe : 'M'
 }]
 
-// age moyen should // be 27,7
-// nom le plus long // should be "de Barthez"
-// ordre alphabetique
-// faire de l'ajax pour charger la liste des students qui eux seront contenu dans un fichier JSON
+////////////////////// Algorithmie //////////////////////
 
 let totalAge = 0
 let ageMoyen
@@ -99,8 +99,6 @@ for (i=0; i<students.length; i++){
     }
 }
 
-ageMoyen = totalAge / students.length
-
 let odreAlphabetique = students.sort(function (a, b){
     if (a.nom.toUpperCase() > b.nom.toUpperCase()){
         return 1
@@ -112,20 +110,15 @@ let odreAlphabetique = students.sort(function (a, b){
         return 0
     }
 })
-
+ageMoyen = totalAge / students.length
 pariteM = `${m*100/students.length} %`
 pariteF = `${f*100/students.length} %`
-// console.log(ageMoyen)
-// console.log(nomLePlusLong)
-// console.log(odreAlphabetique)
-// console.log(pariteM, pariteF)
 
-// creer vue HTML
-// 1 page en Jquery, 1 en Native JS
+////////////////////// Factorisation Affichage //////////////////////
 
-// Vanilla Js
+// Vanilla Js //
 
-function showOnClick(v, w, x, y, z){
+function showOnClickJs(v, w, x, y, z){
     v = document.createElement('div')
     v.innerHTML = w
     v.setAttribute('id', x)
@@ -136,33 +129,34 @@ function showOnClick(v, w, x, y, z){
     })
 }
 
-showOnClick(parite, `${pariteF} / ${pariteM}`, 'afficheParite', 'parite', "buttonParite")
-showOnClick(nomLong, `${nomLePlusLong}`, 'affichenomLong', 'nomLong', "buttonNomLong")
-showOnClick(textMoyenne, `${ageMoyen}`, 'afficheAgeMoyen', 'moyenne', "buttonMoyenne")
+showOnClickJs(parite, `${pariteF} / ${pariteM}`, 'afficheParite', 'parite', "buttonParite")
+showOnClickJs(nomLong, `${nomLePlusLong}`, 'affichenomLong', 'nomLong', "buttonNomLong")
+showOnClickJs(textMoyenne, `${ageMoyen}`, 'afficheAgeMoyen', 'moyenne', "buttonMoyenne")
 for (i = 0; i < students.length; i++) {
-    showOnClick(list, `${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}`, 'afficheList', 'list', "buttonList")
+    showOnClickJs(list, `${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}`, 'afficheList', 'list', "buttonList")
 }
 
-// jQuery
-$('#QbuttonMoyenne').click(function(){
-    $('#Qmoyenne').html(ageMoyen).toggleClass('hide')
-})
-$('#QbuttonNomLong').click(function(){
-    $('#QnomLong').html(`${nomLePlusLong}`).toggleClass('hide')
-})
-$('#QbuttonParite').click(function(){
-    $('#Qparite').html(`${pariteF} / ${pariteM}`).toggleClass('hide')
-})
+// jQuery //
+
+function showOnClickJquery(s, t, u){
+    $(s).click(function(){
+        $(t).html(u).toggleClass('hide')
+    })
+}
+
+showOnClickJquery('#QbuttonMoyenne', '#Qmoyenne', ageMoyen)
+showOnClickJquery('#QbuttonNomLong', '#QnomLong', `${nomLePlusLong}`)
+showOnClickJquery('#QbuttonParite', '#Qparite', `${pariteF} / ${pariteM}`)
 
 for (i = 0; i < students.length; i++) {
     $('#Qlist').append(`<li>${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}</li>`)
 }
 $('#QbuttonList').click(function(){
-$('#Qlist').toggleClass('hide')
+    $('#Qlist').toggleClass('hide')
 })
 
+// AJAX //
 
-// AJAX
 let html = ""
 $.getJSON("ajax.json", function(json) {
     json.forEach(function(val) {
@@ -173,6 +167,7 @@ $.getJSON("ajax.json", function(json) {
 $("#QbuttonAjax").on("click", function() {
     $('#Qajax').toggleClass('hide')
 })
+
 
 let map = new google.maps.Map(document.getElementById('map'), {
     zoom: 6,
