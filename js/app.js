@@ -164,12 +164,38 @@ $.getJSON("student.json", function(json) {
     $("#Qajax").append(Qlist)
 
 })
-$("#QbuttonAjax").on("click", function() {
+$("#QbuttonAjax").click(function() {
     $('#Qajax').toggleClass('hide')
 })
 
 // Geocoding //
+
 // Google API key : AIzaSyAx5FDqSbdMpU6pOR6B8hTide4bKWY-Fn4
+
+// Weather API key : 39d104ba804c4dba1133789f92fe239f
+           function getWeather(city) {
+               let req = new XMLHttpRequest()
+               req.open('GET', `${ 'http://api.openweathermap.org/data/2.5/weather?q='}${city}${ '&appid=39d104ba804c4dba1133789f92fe239f'}`, true);
+               req.onreadystatechange = function(json) {
+                   if (req.readyState == 4) {
+                       if (req.status == 200) {
+                           json = JSON.parse(this.responseText)
+                           let weatherresult = json.weather
+                           let tempresult = json.main
+                           let main = `The Weather in ${city} : ${weatherresult[0].description}`
+                           let temperature = `The temperature is : ${ (tempresult.temp - 273.15).toFixed(2)}°C`
+                           let geticon = `${weatherresult[0].icon}`
+                           let icon = `${ 'http://openweathermap.org/img/w/'}${geticon}${ '.png'}`
+                           let resultVariable = document.createElement('div')
+                           resultVariable.innerHTML = `${main} <img src='${icon}'></img> <br> ${temperature}`
+                           resultVariable.setAttribute('id', 'showWeather')
+                       } else {
+                           alert("Erreur pendant le chargement de la page.\n");
+                       }
+                   }
+               };
+               req.send(null);
+           }
 
 let map = new google.maps.Map(document.getElementById('map'), {
     zoom: 6,
@@ -184,7 +210,8 @@ function geocodeAddress(geocoder, resultsMap) {
     $.getJSON("student.json", function(json) {
         json.forEach(function(val) {
             address = val.ville
-            contentString = `${val.nom} ${val.Prenom}`
+            let city = val.city
+            contentString = `${val.nom} ${val.Prenom} ${getWeather(city)}`
             let infowindow = new google.maps.InfoWindow({
                 content: contentString
             })
