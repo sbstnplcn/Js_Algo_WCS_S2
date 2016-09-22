@@ -118,13 +118,13 @@ pariteF = `${f*100/students.length} %`
 
 // Vanilla Js //
 
-function showOnClickJs(v, w, x, y, z){
-    v = document.createElement('div')
-    v.innerHTML = w
-    v.setAttribute('id', x)
-    document.getElementById(y).appendChild(v).className = "hide"
-    document.getElementById(z).addEventListener("click", function(){
-        v.classList.toggle("hide")
+function showOnClickJs(resultVariable, result, setId, resultId, resultbutton){
+    resultVariable = document.createElement('div')
+    resultVariable.innerHTML = result
+    resultVariable.setAttribute('id', setId)
+    document.getElementById(resultId).appendChild(resultVariable).className = "hide"
+    document.getElementById(resultbutton).addEventListener("click", function(){
+        resultVariable.classList.toggle("hide")
     })
 }
 
@@ -137,9 +137,9 @@ for (i = 0; i < students.length; i++) {
 
 // jQuery //
 
-function showOnClickJquery(s, t, u){
-    $(s).click(function(){
-        $(t).html(u).toggleClass('hide')
+function showOnClickJquery(QButtonId, QId, QResultat){
+    $(QButtonId).click(function(){
+        $(QId).html(QResultat).toggleClass('hide')
     })
 }
 
@@ -161,22 +161,15 @@ $.getJSON("student.json", function(json) {
     json.forEach(function(val) {
         Qlist += `${"<li>"} ${val.nom} ${val.Prenom} ${"</li>"}`
     })
-  $("#Qajax").append(Qlist)
+    $("#Qajax").append(Qlist)
+
 })
 $("#QbuttonAjax").on("click", function() {
     $('#Qajax').toggleClass('hide')
 })
 
 // Geocoding //
-
-//Proposition de Challenge
-// Challenge 1
-//// Trouver l'épicentre de tout les élèves
-////// => requeter toute les lat et lng, faire la moyenne de chacune
-////// Centrer la carte sur l'épicentre
-// Challenge 2
-//// Faire de même avec les écoles
-
+// Google API key : AIzaSyAx5FDqSbdMpU6pOR6B8hTide4bKWY-Fn4
 
 let map = new google.maps.Map(document.getElementById('map'), {
     zoom: 6,
@@ -196,13 +189,13 @@ function geocodeAddress(geocoder, resultsMap) {
                 content: contentString
             })
             geocoder.geocode({'address': address}, function(results) {
+                resultsMap.setCenter(results[0].geometry.location)
                 let marker = new google.maps.Marker({
                     map: resultsMap,
                     position: results[0].geometry.location
                 })
                 marker.addListener('click', function() {
                     infowindow.open(map, marker)
-                    $(this).toggleClass('hide')
                 })
             })
         })
@@ -211,4 +204,3 @@ function geocodeAddress(geocoder, resultsMap) {
 
 
 })
-// Google API key : AIzaSyAx5FDqSbdMpU6pOR6B8hTide4bKWY-Fn4
