@@ -174,13 +174,12 @@ $(document).ready(function() {
     function getWeather(city) {
         $.getJSON(`${ 'http://api.openweathermap.org/data/2.5/weather?q='}${city}${ '&appid=39d104ba804c4dba1133789f92fe239f'}`, function(json) {
             let main = `The Weather in ${city} : ${json.weather[0].description}`
-            let temperature = `The temperature is : ${ (json.main.temp - 273.15).toFixed(2)}°C`
+            console.log(main);
+            let temperature = `The temperature is : ${ (json.main.temp - 273.15).toFixed(1)}°C`
             let icon = `${ 'http://openweathermap.org/img/w/'}${json.weather[0].icon}${ '.png'}`
             let resultVariable = document.createElement('div')
             resultVariable.innerHTML = `${main} <img src='${icon}'></img> <br> ${temperature}`
             resultVariable.setAttribute('id', 'showWeather')
-            console.log(resultVariable);
-            $(resultVariable).append()
         })
     }
 
@@ -197,9 +196,9 @@ $(document).ready(function() {
         $.getJSON("student.json", function(json) {
             json.forEach(function(val) {
                 address = val.ville
-                let city = val.city
-                contentString = `${val.nom} ${val.Prenom} ${getWeather(city)}`
-                console.log(`${getWeather(city)}`)
+                let getcity = val.city
+                contentString = `${val.nom} ${val.Prenom} <br> ${getWeather(getcity)}`
+                console.log(contentString);
                 let infowindow = new google.maps.InfoWindow({
                     content: contentString
                 })
