@@ -2,232 +2,222 @@
 
 $(document).ready(function() {
 
-// Tableau //
+    // Tableau //
 
-let students = [{
-    nom: "Sebirou",
-    Prenom: "Anne-Claire",
-    age: 29,
-    sexe : 'F',
-    ville: "579 avenue de la bécasse, 40150, Soorts-Hossegor"
-},{
-    nom: "Huc",
-    Prenom: "Vivien",
-    age: 18,
-    sexe : 'M',
-    ville: "Le Haillan, 33185"
-}, {
-    nom: "de Barthez",
-    Prenom: "Paul",
-    age: 22,
-    sexe : 'M',
-    ville: "72 rue Henri IV, 33000, Bordeaux"
-},  {
-    nom: "Mouat",
-    Prenom: "Karl",
-    age: 35,
-    sexe : 'M',
-    ville: "81 rue de rivière, 33000, BORDEAUX"
-}, {
-    nom: "Bordais",
-    Prenom: "Alexis",
-    age: 34,
-    sexe : 'M',
-    ville: "18 rue Jean Paul Alaux, 33100, Bordeaux"
-}, {
-    nom: "Alary",
-    Prenom: "Audrey",
-    age: 23,
-    sexe : 'F',
-    ville: "21 rue rode, 33000, Bordeaux"
-}, {
-    nom: "Palacin",
-    Prenom: "Sébastien",
-    age: 27,
-    sexe : 'M',
-    ville : "36 rue des Tourneurs, 31000, Toulouse"
-}, {
-    nom: "Cisse",
-    Prenom: "Ousmane",
-    age: 34,
-    sexe : 'M',
-    ville : "Nantes, 44000"
-}, {
-    nom: "Gomez",
-    Prenom: "Tony",
-    age: 30,
-    sexe : 'M',
-    ville : "Villenave d'Ornon, 33140"
-}, {
-    nom: "Mourgues",
-    Prenom: "Nans",
-    age: 25,
-    sexe : 'M',
-    ville: "Santo-Pietro-di-Tenda, 20270"
-}]
+    let students = [{
+        nom: "Sebirou",
+        Prenom: "Anne-Claire",
+        age: 29,
+        sexe: 'F',
+        ville: "579 avenue de la bécasse, 40150, Soorts-Hossegor"
+    }, {
+        nom: "Huc",
+        Prenom: "Vivien",
+        age: 18,
+        sexe: 'M',
+        ville: "Le Haillan, 33185"
+    }, {
+        nom: "de Barthez",
+        Prenom: "Paul",
+        age: 22,
+        sexe: 'M',
+        ville: "72 rue Henri IV, 33000, Bordeaux"
+    }, {
+        nom: "Mouat",
+        Prenom: "Karl",
+        age: 35,
+        sexe: 'M',
+        ville: "81 rue de rivière, 33000, BORDEAUX"
+    }, {
+        nom: "Bordais",
+        Prenom: "Alexis",
+        age: 34,
+        sexe: 'M',
+        ville: "18 rue Jean Paul Alaux, 33100, Bordeaux"
+    }, {
+        nom: "Alary",
+        Prenom: "Audrey",
+        age: 23,
+        sexe: 'F',
+        ville: "21 rue rode, 33000, Bordeaux"
+    }, {
+        nom: "Palacin",
+        Prenom: "Sébastien",
+        age: 27,
+        sexe: 'M',
+        ville: "36 rue des Tourneurs, 31000, Toulouse"
+    }, {
+        nom: "Cisse",
+        Prenom: "Ousmane",
+        age: 34,
+        sexe: 'M',
+        ville: "Nantes, 44000"
+    }, {
+        nom: "Gomez",
+        Prenom: "Tony",
+        age: 30,
+        sexe: 'M',
+        ville: "Villenave d'Ornon, 33140"
+    }, {
+        nom: "Mourgues",
+        Prenom: "Nans",
+        age: 25,
+        sexe: 'M',
+        ville: "Santo-Pietro-di-Tenda, 20270"
+    }]
 
-////////////////////// Algorithmie //////////////////////
+    ////////////////////// Algorithmie //////////////////////
 
-let totalAge = 0
-let ageMoyen
-let i
-let longueurNom = 0
-let nomLePlusLong
-let textMoyenne
-let list
-let sonNom
-let ordreAl
-let pariteM
-let pariteF
-let f = 0
-let m = 0
+    let totalAge = 0
+    let ageMoyen
+    let i
+    let longueurNom = 0
+    let nomLePlusLong
+    let textMoyenne
+    let list
+    let sonNom
+    let ordreAl
+    let pariteM
+    let pariteF
+    let f = 0
+    let m = 0
 
-for (i=0; i<students.length; i++){
+    for (i = 0; i < students.length; i++) {
 
-    totalAge += students[i].age
+        totalAge += students[i].age
 
-    if(students[i].nom.length > longueurNom){
-        longueurNom = students[i].nom.length;
-        nomLePlusLong = students[i].nom;
+        if (students[i].nom.length > longueurNom) {
+            longueurNom = students[i].nom.length;
+            nomLePlusLong = students[i].nom;
+        }
+
+        if (students[i].sexe === "M") {
+            m += 1
+        } else {
+            f += 1
+        }
     }
 
-    if (students[i].sexe === "M"){
-        m += 1
-    }
-    else{
-        f += 1
-    }
-}
-
-let odreAlphabetique = students.sort(function (a, b){
-    if (a.nom.toUpperCase() > b.nom.toUpperCase()){
-        return 1
-    }
-    else if (a.nom.toUpperCase() < b.nom.toUpperCase()){
-        return -1
-    }
-    else{
-        return 0
-    }
-})
-ageMoyen = totalAge / students.length
-pariteM = `${m*100/students.length} %`
-pariteF = `${f*100/students.length} %`
-
-////////////////////// Factorisation Affichage //////////////////////
-
-// Vanilla Js //
-
-function showOnClickJs(resultVariable, result, setId, resultId, resultbutton){
-    resultVariable = document.createElement('div')
-    resultVariable.innerHTML = result
-    resultVariable.setAttribute('id', setId)
-    document.getElementById(resultId).appendChild(resultVariable).className = "hide"
-    document.getElementById(resultbutton).addEventListener("click", function(){
-        resultVariable.classList.toggle("hide")
+    let odreAlphabetique = students.sort(function(a, b) {
+        if (a.nom.toUpperCase() > b.nom.toUpperCase()) {
+            return 1
+        } else if (a.nom.toUpperCase() < b.nom.toUpperCase()) {
+            return -1
+        } else {
+            return 0
+        }
     })
-}
+    ageMoyen = totalAge / students.length
+    pariteM = `${m*100/students.length} %`
+    pariteF = `${f*100/students.length} %`
 
-showOnClickJs(parite, `${pariteF} / ${pariteM}`, 'afficheParite', 'parite', "buttonParite")
-showOnClickJs(nomLong, `${nomLePlusLong}`, 'affichenomLong', 'nomLong', "buttonNomLong")
-showOnClickJs(textMoyenne, `${ageMoyen}`, 'afficheAgeMoyen', 'moyenne', "buttonMoyenne")
-for (i = 0; i < students.length; i++) {
-    showOnClickJs(list, `${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}`, 'afficheList', 'list', "buttonList")
-}
+    ////////////////////// Factorisation Affichage //////////////////////
 
-// jQuery //
+    // Vanilla Js //
 
-function showOnClickJquery(QButtonId, QId, QResultat){
-    $(QButtonId).click(function(){
-        $(QId).html(QResultat).toggleClass('hide')
+    function showOnClickJs(resultVariable, result, setId, resultId, resultbutton) {
+        resultVariable = document.createElement('div')
+        resultVariable.innerHTML = result
+        resultVariable.setAttribute('id', setId)
+        document.getElementById(resultId).appendChild(resultVariable).className = "hide"
+        document.getElementById(resultbutton).addEventListener("click", function() {
+            resultVariable.classList.toggle("hide")
+        })
+    }
+
+    showOnClickJs(parite, `${pariteF} / ${pariteM}`, 'afficheParite', 'parite', "buttonParite")
+    showOnClickJs(nomLong, `${nomLePlusLong}`, 'affichenomLong', 'nomLong', "buttonNomLong")
+    showOnClickJs(textMoyenne, `${ageMoyen}`, 'afficheAgeMoyen', 'moyenne', "buttonMoyenne")
+    for (i = 0; i < students.length; i++) {
+        showOnClickJs(list, `${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}`, 'afficheList', 'list', "buttonList")
+    }
+
+    // jQuery //
+
+    function showOnClickJquery(QButtonId, QId, QResultat) {
+        $(QButtonId).click(function() {
+            $(QId).html(QResultat).toggleClass('hide')
+        })
+    }
+
+    showOnClickJquery('#QbuttonMoyenne', '#Qmoyenne', ageMoyen)
+    showOnClickJquery('#QbuttonNomLong', '#QnomLong', `${nomLePlusLong}`)
+    showOnClickJquery('#QbuttonParite', '#Qparite', `${pariteF} / ${pariteM}`)
+
+    for (i = 0; i < students.length; i++) {
+        $('#Qlist').append(`<li>${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}</li>`)
+    }
+    $('#QbuttonList').click(function() {
+        $('#Qlist').toggleClass('hide')
     })
-}
 
-showOnClickJquery('#QbuttonMoyenne', '#Qmoyenne', ageMoyen)
-showOnClickJquery('#QbuttonNomLong', '#QnomLong', `${nomLePlusLong}`)
-showOnClickJquery('#QbuttonParite', '#Qparite', `${pariteF} / ${pariteM}`)
+    // AJAX //
 
-for (i = 0; i < students.length; i++) {
-    $('#Qlist').append(`<li>${odreAlphabetique[i].nom} ${odreAlphabetique[i].Prenom}</li>`)
-}
-$('#QbuttonList').click(function(){
-    $('#Qlist').toggleClass('hide')
-})
-
-// AJAX //
-
-let Qlist = ""
-$.getJSON("student.json", function(json) {
-    json.forEach(function(val) {
-        Qlist += `${"<li>"} ${val.nom} ${val.Prenom} ${"</li>"}`
-    })
-    $("#Qajax").append(Qlist)
-
-})
-$("#QbuttonAjax").click(function() {
-    $('#Qajax').toggleClass('hide')
-})
-
-// Geocoding //
-
-// Google API key : AIzaSyAx5FDqSbdMpU6pOR6B8hTide4bKWY-Fn4
-
-// Weather API key : 39d104ba804c4dba1133789f92fe239f
-           function getWeather(city) {
-               let req = new XMLHttpRequest()
-               req.open('GET', `${ 'http://api.openweathermap.org/data/2.5/weather?q='}${city}${ '&appid=39d104ba804c4dba1133789f92fe239f'}`, true);
-               req.onreadystatechange = function(json) {
-                   if (req.readyState == 4) {
-                       if (req.status == 200) {
-                           json = JSON.parse(this.responseText)
-                           let weatherresult = json.weather
-                           let tempresult = json.main
-                           let main = `The Weather in ${city} : ${weatherresult[0].description}`
-                           let temperature = `The temperature is : ${ (tempresult.temp - 273.15).toFixed(2)}°C`
-                           let geticon = `${weatherresult[0].icon}`
-                           let icon = `${ 'http://openweathermap.org/img/w/'}${geticon}${ '.png'}`
-                           let resultVariable = document.createElement('div')
-                           resultVariable.innerHTML = `${main} <img src='${icon}'></img> <br> ${temperature}`
-                           resultVariable.setAttribute('id', 'showWeather')
-                       } else {
-                           alert("Erreur pendant le chargement de la page.\n");
-                       }
-                   }
-               };
-               req.send(null);
-           }
-
-let map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 6,
-    center: new google.maps.LatLng(45,2.6)
-});
-let geocoder = new google.maps.Geocoder();
-geocodeAddress(geocoder, map);
-let address
-let contentString
-
-function geocodeAddress(geocoder, resultsMap) {
+    let Qlist = ""
     $.getJSON("student.json", function(json) {
         json.forEach(function(val) {
-            address = val.ville
-            let city = val.city
-            contentString = `${val.nom} ${val.Prenom} ${getWeather(city)}`
-            let infowindow = new google.maps.InfoWindow({
-                content: contentString
-            })
-            geocoder.geocode({'address': address}, function(results) {
-                resultsMap.setCenter(results[0].geometry.location)
-                let marker = new google.maps.Marker({
-                    map: resultsMap,
-                    position: results[0].geometry.location
+            Qlist += `${"<li>"} ${val.nom} ${val.Prenom} ${"</li>"}`
+        })
+        $("#Qajax").append(Qlist)
+
+    })
+    $("#QbuttonAjax").click(function() {
+        $('#Qajax').toggleClass('hide')
+    })
+
+    // Geocoding //
+
+    // Google API key : AIzaSyAx5FDqSbdMpU6pOR6B8hTide4bKWY-Fn4
+
+    // Weather API key : 39d104ba804c4dba1133789f92fe239f
+
+    function getWeather(city) {
+        $.getJSON(`${ 'http://api.openweathermap.org/data/2.5/weather?q='}${city}${ '&appid=39d104ba804c4dba1133789f92fe239f'}`, function(json) {
+            let main = `The Weather in ${city} : ${json.weather[0].description}`
+            let temperature = `The temperature is : ${ (json.main.temp - 273.15).toFixed(2)}°C`
+            let icon = `${ 'http://openweathermap.org/img/w/'}${json.weather[0].icon}${ '.png'}`
+            let resultVariable = document.createElement('div')
+            resultVariable.innerHTML = `${main} <img src='${icon}'></img> <br> ${temperature}`
+            resultVariable.setAttribute('id', 'showWeather')
+            console.log(resultVariable);
+            $(resultVariable).append()
+        })
+    }
+
+    let map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 6,
+        center: new google.maps.LatLng(45, 2.6)
+    });
+    let geocoder = new google.maps.Geocoder();
+    geocodeAddress(geocoder, map);
+    let address
+    let contentString
+
+    function geocodeAddress(geocoder, resultsMap) {
+        $.getJSON("student.json", function(json) {
+            json.forEach(function(val) {
+                address = val.ville
+                let city = val.city
+                contentString = `${val.nom} ${val.Prenom} ${getWeather(city)}`
+                console.log(`${getWeather(city)}`)
+                let infowindow = new google.maps.InfoWindow({
+                    content: contentString
                 })
-                marker.addListener('click', function() {
-                    infowindow.open(map, marker)
+                geocoder.geocode({
+                    'address': address
+                }, function(results) {
+                    resultsMap.setCenter(results[0].geometry.location)
+                    let marker = new google.maps.Marker({
+                        map: resultsMap,
+                        position: results[0].geometry.location
+                    })
+                    marker.addListener('click', function() {
+                        infowindow.open(map, marker)
+                    })
                 })
             })
         })
-    })
-}
+    }
 
 
 })
