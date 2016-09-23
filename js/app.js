@@ -35,11 +35,11 @@ $(document).ready(function() {
         sexe: 'M',
         ville: "18 rue Jean Paul Alaux, 33100, Bordeaux"
     }, {
-        nom: "Alary",
-        Prenom: "Audrey",
-        age: 23,
-        sexe: 'F',
-        ville: "21 rue rode, 33000, Bordeaux"
+        nom: "Mourgues",
+        Prenom: "Nans",
+        age: 25,
+        sexe: 'M',
+        ville: "Santo-Pietro-di-Tenda, 20270"
     }, {
         nom: "Palacin",
         Prenom: "Sébastien",
@@ -59,11 +59,12 @@ $(document).ready(function() {
         sexe: 'M',
         ville: "Villenave d'Ornon, 33140"
     }, {
-        nom: "Mourgues",
-        Prenom: "Nans",
-        age: 25,
-        sexe: 'M',
-        ville: "Santo-Pietro-di-Tenda, 20270"
+        nom: "Alary",
+        Prenom: "Audrey",
+        age: 23,
+        sexe: 'F',
+        ville: "21 rue rode, 33000, Bordeaux"
+
     }]
 
     ////////////////////// Algorithmie //////////////////////
@@ -171,20 +172,29 @@ $(document).ready(function() {
 
     // Weather API key : 39d104ba804c4dba1133789f92fe239f
 
-    function getWeather(city) {
-        $.getJSON(`${ 'http://api.openweathermap.org/data/2.5/weather?q='}${city}${ '&appid=39d104ba804c4dba1133789f92fe239f'}`, function(json) {
-            let main = `The Weather in ${city} : ${json.weather[0].description}`
-            console.log(main);
+    function getWeather(student, marker) {
+        $.getJSON(`${ 'http://api.openweathermap.org/data/2.5/weather?q='}${student.city}${ '&appid=39d104ba804c4dba1133789f92fe239f'}`, function(json) {
+            let main = `The Weather in ${student.city} : <br><div style="text-transform : capitalize;">${json.weather[0].description}</div>`
             let temperature = `The temperature is : ${ (json.main.temp - 273.15).toFixed(1)}°C`
             let icon = `${ 'http://openweathermap.org/img/w/'}${json.weather[0].icon}${ '.png'}`
-            let resultVariable = document.createElement('div')
-            resultVariable.innerHTML = `${main} <img src='${icon}'></img> <br> ${temperature}`
-            resultVariable.setAttribute('id', 'showWeather')
+            contentString = `<h5>${student.Prenom} ${student.nom}</h5>
+            <div id="infoWeather">
+            <br>
+            <div class="col s9">${main}<br>${temperature}</div>
+            <div class="col s3"><img src='${icon}'></div>
+            </div>`
+            let infowindow = new google.maps.InfoWindow({
+                content: contentString
+            })
+
+            marker.addListener('click', function() {
+                infowindow.open(map, marker)
+            })
         })
     }
 
     let map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 6,
+        zoom: 5,
         center: new google.maps.LatLng(45, 2.6)
     });
     let geocoder = new google.maps.Geocoder();
@@ -195,24 +205,15 @@ $(document).ready(function() {
     function geocodeAddress(geocoder, resultsMap) {
         $.getJSON("student.json", function(json) {
             json.forEach(function(val) {
-                address = val.ville
-                let getcity = val.city
-                contentString = `${val.nom} ${val.Prenom} <br> ${getWeather(getcity)}`
-                console.log(contentString);
-                let infowindow = new google.maps.InfoWindow({
-                    content: contentString
-                })
                 geocoder.geocode({
-                    'address': address
+                    'address': val.ville
                 }, function(results) {
                     resultsMap.setCenter(results[0].geometry.location)
                     let marker = new google.maps.Marker({
                         map: resultsMap,
                         position: results[0].geometry.location
                     })
-                    marker.addListener('click', function() {
-                        infowindow.open(map, marker)
-                    })
+                    getWeather(val, marker)
                 })
             })
         })
